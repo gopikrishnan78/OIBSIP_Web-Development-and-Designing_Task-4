@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>Register</h2>
+  <div class="field">
+  <input type="text" id="username" placeholder="Username">
+</div>
+
+<div class="field">
+  <input type="password" id="password" placeholder="Password">
+</div>
+
+   <button onclick="register()">Register</button>
+  <p>Already have an account? <a href="index.html">Login</a></p>
+</div>
+
+<script>
+function register() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  if (!username || !password) {
+    alert("All fields are required");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  if (users.find(u => u.username === username)) {
+    alert("User already exists");
+    return;
+  }
+
+  users.push({ username, password });
+  localStorage.setItem("users", JSON.stringify(users));
+
+  alert("Registration successful!");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

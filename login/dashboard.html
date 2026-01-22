@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>Welcome 🎉</h2>
+  <p id="user"></p>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+const loggedInUser = localStorage.getItem("loggedInUser");
+
+if (!loggedInUser) {
+  window.location.href = "index.html";
+}
+
+document.getElementById("user").innerText =
+  "Logged in as: " + loggedInUser;
+
+function logout() {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>
